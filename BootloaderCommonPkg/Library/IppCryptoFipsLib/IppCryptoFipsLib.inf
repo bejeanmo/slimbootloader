@@ -1,6 +1,6 @@
 ## @file
 #
-#  Copyright (c) 2017-2020, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2024, Intel Corporation. All rights reserved.<BR>
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -14,7 +14,7 @@
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = CryptoLib
-  DEFINE IPP_PATH                = ipp-crypto/
+  DEFINE IPP_PATH                = ipp-crypto
 
 #
 # The following information is for reference only and not required by the build tools.
@@ -94,11 +94,6 @@
   $(IPP_PATH)/sources/ippcp/pcphmacca_rmf.c
   $(IPP_PATH)/sources/ippcp/pcphmacupdate_rmf.c
   $(IPP_PATH)/sources/ippcp/pcphmacfinal_rmf.c
-[Sources.IA32]
-
-
-[Sources.X64]
-
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -116,5 +111,5 @@
 
 [BuildOptions]
   MSFT:*_*_*_CC_FLAGS = -D_ABL_ /GL-
-  GCC:*_*_*_CC_FLAGS  = -D_ABL_
+  GCC:*_*_*_CC_FLAGS  = -D_ABL_ -w -Wformat -Wformat-security
 

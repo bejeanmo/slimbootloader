@@ -6,5 +6,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
 
-#include <IppCryptoSupport.h>
+// Dummy include file needed to use Slim Bootloader definitions for any code looking for stdlib.h
 
+#include <IppCryptoSupport.h>
