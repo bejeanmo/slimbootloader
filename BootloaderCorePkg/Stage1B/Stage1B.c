@@ -381,6 +381,7 @@ SecStartup2 (
   VOID                    **FieldPtr;
   UINT32                    Tolum;
   UINT64                    Touum;
+  UINTN                     AsanShadowSize;
 
   LdrGlobal = (LOADER_GLOBAL_DATA *)GetLoaderGlobalDataPointer ();
   ASSERT (LdrGlobal != NULL);
@@ -484,9 +485,11 @@ SecStartup2 (
   ASSERT (FspReservedMemBase > 0);
 
   // Prepare Global Data structure
+  // reserve ASAN shadow region that is 1/8th of the remaining mem, placed immediately below FspReservedMemBase
+  AsanShadowSize = ALIGN_UP(PcdGet32 (PcdLoaderReservedMemSize)/9 + (1 ? PcdGet32 (PcdLoaderReservedMemSize)%9 : 0), 16);
   OldLdrGlobal   = LdrGlobal;
   MemPoolStart   = FspReservedMemBase - PcdGet32 (PcdLoaderReservedMemSize);
-  MemPoolEnd     = FspReservedMemBase - PcdGet32 (PcdLoaderHobStackSize);
+  MemPoolEnd     = FspReservedMemBase - PcdGet32 (PcdLoaderHobStackSize) - AsanShadowSize;
   MemPoolCurrTop = ALIGN_DOWN (MemPoolEnd - sizeof (LOADER_GLOBAL_DATA), 0x10);
   LdrGlobal      = (LOADER_GLOBAL_DATA *)(UINTN)MemPoolCurrTop;
   MemPoolCurrTop = ALIGN_DOWN (MemPoolCurrTop - sizeof (STAGE_IDT_TABLE), 0x10);
@@ -501,7 +504,7 @@ SecStartup2 (
 
   LdrGlobal->FspHobList        = HobList;
   LdrGlobal->LdrHobList        = NULL;
-  LdrGlobal->StackTop          = FspReservedMemBase;
+  LdrGlobal->StackTop          = FspReservedMemBase - AsanShadowSize;
   LdrGlobal->MemPoolEnd        = MemPoolEnd;
   LdrGlobal->MemPoolStart      = MemPoolStart;
   LdrGlobal->MemPoolCurrTop    = MemPoolCurrTop;
@@ -526,6 +529,9 @@ SecStartup2 (
     );
   DEBUG_CODE_END ();
 
+  // ASAN Shadow mem initialized to "addressable"
+  ZeroMem((VOID*)(UINTN)LdrGlobal->StackTop, AsanShadowSize);
+
   // Setup global data in memory
   LoadGdt (GdtTablePtr, NULL);
   LoadIdt (IdtTablePtr, (UINT32)(UINTN)LdrGlobal);
@@ -535,6 +541,8 @@ SecStartup2 (
   // Reload GDT table into memory
   RemapStage ();
   EnableCodeExecution ();
+
+  DEBUG((DEBUG_INFO, "ASAN shadow region @ 0x%08X - 0x%08X\n", LdrGlobal->StackTop, LdrGlobal->StackTop + AsanShadowSize));
 
   OldStatus = SaveAndSetDebugTimerInterrupt (FALSE);
   InitializeDebugAgent (DEBUG_AGENT_INIT_POSTMEM_SEC, NULL, NULL);

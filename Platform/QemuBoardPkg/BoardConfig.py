@@ -175,7 +175,7 @@ class Board(BaseBoard):
 
         self.STAGE1_STACK_SIZE    = 0x00002000
         self.STAGE1_DATA_SIZE     = 0x0000E000
-        self.LOADER_RSVD_MEM_SIZE = 0x00800000
+        self.LOADER_RSVD_MEM_SIZE = 0x00C00000
         self.CFG_DATABASE_SIZE    = self.CFGDATA_SIZE
 
         # Add following to force to use a specific platform ID

@@ -166,3 +166,7 @@
   gPlatformCommonLibTokenSpaceGuid.PcdPe32SupportEnabled
 [Depex]
   TRUE
+
+[BuildOptions]
+  #*_*_*_CC_FLAGS = -fsanitize=address /fno-sanitize-address-vcasan-lib /FA
+  #*_*_*_DLINK_FLAGS = /INFERASANLIBS:NO
