@@ -107,7 +107,7 @@ class Board(BaseBoard):
         if self.NO_OPT_MODE:
             self.STAGE1A_SIZE    += 0x1000
         self.STAGE1B_SIZE         = 0x00030000
-        self.STAGE2_SIZE          = 0x0001D000
+        self.STAGE2_SIZE          = 0x00024000
 
         self.TEST_SIZE            = 0x00001000
         self.SIIPFW_SIZE          = 0x00010000
@@ -115,12 +115,12 @@ class Board(BaseBoard):
         if self._SMBIOS_YAML_FILE:
             self.SIIPFW_SIZE += 0x1000
         self.EPAYLOAD_SIZE        = 0x0020D000
-        self.PAYLOAD_SIZE         = 0x00022000
+        self.PAYLOAD_SIZE         = 0x00040000
         self.CFGDATA_SIZE         = 0x00001000
         self.KEYHASH_SIZE         = 0x00001000
         self.VARIABLE_SIZE        = 0x00002000
         self.SBLRSVD_SIZE         = 0x00001000
-        self.FWUPDATE_SIZE        = 0x00019000 if self.ENABLE_FWU else 0
+        self.FWUPDATE_SIZE        = 0x0002A000 if self.ENABLE_FWU else 0
         self.SETUP_SIZE           = 0x00020000 if self.ENABLE_SBL_SETUP else 0
 
         self._REDUNDANT_LAYOUT    = 1
@@ -153,7 +153,7 @@ class Board(BaseBoard):
         if not self.STAGE1B_XIP:
             # For Stage1B, it can be compressed if STAGE1B_XIP is 0
             # If so, STAGE1B_FD_BASE/STAGE1B_FD_SIZE need to be defined
-            self.STAGE1B_FD_SIZE      = 0x32000
+            self.STAGE1B_FD_SIZE      = 0x42000
             if self.NO_OPT_MODE:
                 self.STAGE1B_FD_SIZE += 0xE000
             self.STAGE1B_FD_BASE    = FREE_TEMP_RAM_TOP - self.STAGE1B_FD_SIZE
@@ -161,7 +161,10 @@ class Board(BaseBoard):
         # For Stage2, it is always compressed.
         # if STAGE2_LOAD_HIGH is 1, STAGE2_FD_BASE will be ignored
         self.STAGE2_FD_BASE       = 0x01000000
-        self.STAGE2_FD_SIZE       = 0x00060000
+        self.STAGE2_FD_SIZE       = 0x00070000
+
+        self.OS_LOADER_FD_SIZE    += 0x70000
+        self.OS_LOADER_FD_NUMBLK  = self.OS_LOADER_FD_SIZE // self.FLASH_BLOCK_SIZE
 
         if self.NO_OPT_MODE:
             if self.FSPDEBUG_MODE == 1:

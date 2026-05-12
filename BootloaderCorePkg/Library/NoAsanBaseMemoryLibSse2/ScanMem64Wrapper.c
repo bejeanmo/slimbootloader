@@ -40,8 +40,8 @@
   @return A pointer to the matching byte in the target buffer or NULL otherwise.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanScanMem64 (
   IN CONST VOID  *Buffer,

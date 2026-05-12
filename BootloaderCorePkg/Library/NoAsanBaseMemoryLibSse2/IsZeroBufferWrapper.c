@@ -35,8 +35,8 @@
   @retval FALSE       Contents of the buffer are not all zeros.
 
 **/
-BOOLEAN
 NO_SANITIZE_ADDRESS
+BOOLEAN
 EFIAPI
 NoAsanIsZeroBuffer (
   IN CONST VOID  *Buffer,

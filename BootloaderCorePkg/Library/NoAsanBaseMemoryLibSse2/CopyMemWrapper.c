@@ -36,8 +36,8 @@
   @return DestinationBuffer.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanCopyMem (
   OUT VOID       *DestinationBuffer,

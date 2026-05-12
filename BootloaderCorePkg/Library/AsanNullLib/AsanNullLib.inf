@@ -8,8 +8,8 @@
 
 [Defines]
   INF_VERSION                    = 0x0001001B
-  BASE_NAME                      = AsanLib
-  FILE_GUID                      = B72F8B4E-0B68-41C3-A244-826624565D0D
+  BASE_NAME                      = AsanNullLib
+  FILE_GUID                      = 8E883507-B7BF-4574-9595-DC44FDAB06D6
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = AsanLib
@@ -21,7 +21,7 @@
 #
 
 [Sources]
-  AsanLib.c
+  AsanNullLib.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -30,14 +30,4 @@
 
 [LibraryClasses]
   BaseLib
-  PcdLib
-  NoAsanBaseMemoryLib
-
-[Pcd]
-  gPlatformModuleTokenSpaceGuid.PcdAsanShadowBase
-  
-[FixedPcd]
-  gPlatformModuleTokenSpaceGuid.PcdLoaderReservedMemSize
-
-[BuildOptions]
-  MSFT:*_*_*_CC_FLAGS = /GL-
+  BaseMemoryLib

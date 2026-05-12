@@ -126,6 +126,7 @@
   FitLib|BootloaderCommonPkg/Library/FitLib/FitLib.inf
   FdtLib|MdePkg/Library/BaseFdtLib/BaseFdtLib.inf
   BuildFdtLib|BootloaderCommonPkg/Library/BuildFdtLib/BuildFdtLib.inf
+  AsanLib|BootloaderCorePkg/Library/AsanLib/AsanLib.inf
 
 !if $(ENABLE_SOURCE_DEBUG)
   DebugAgentLib|BootloaderCommonPkg/Library/DebugAgentLib/DebugAgentLib.inf
@@ -420,6 +421,7 @@
 !if $(SKIP_STAGE1A_SOURCE_DEBUG)
       DebugAgentLib| BootloaderCommonPkg/Library/DebugAgentLib/DebugAgentLibNull.inf
 !endif
+      #AsanLib      | BootloaderCorePkg/Library/AsanNullLib/AsanNullLib.inf
   }
 
   BootloaderCorePkg/Stage1B/Stage1B.inf {
@@ -429,7 +431,6 @@
       FirmwareResiliencyLib | BootloaderCorePkg/Library/FirmwareResiliencyLib/FirmwareResiliencyLib.inf
       SocInitLib            | $(SOC_INIT_STAGE1B_LIB_INF_FILE)
       BoardInitLib          | $(BRD_INIT_STAGE1B_LIB_INF_FILE)
-      NULL                  | BootloaderCorePkg/Library/AsanLib/AsanLib.inf
   }
 
   BootloaderCorePkg/Stage2/Stage2.inf {
@@ -437,7 +438,6 @@
       FspApiLib    | BootloaderCorePkg/Library/FspApiLib/FspsApiLib.inf
       SocInitLib   | $(SOC_INIT_STAGE2_LIB_INF_FILE)
       BoardInitLib | $(BRD_INIT_STAGE2_LIB_INF_FILE)
-      NULL         | BootloaderCorePkg/Library/AsanLib/AsanLib.inf
   }
 
   PayloadPkg/OsLoader/OsLoader.inf {
@@ -452,7 +452,6 @@
       AbSupportLib        | PayloadPkg/Library/AbSupportLib/AbSupportLib.inf
       SblParameterLib     | PayloadPkg/Library/SblParameterLib/SblParameterLib.inf
       MpServiceLib        | PayloadPkg/Library/MpServiceLib/MpServiceLib.inf
-      NULL                | BootloaderCorePkg/Library/AsanLib/AsanLib.inf
   }
 
 !if $(ENABLE_FWU)
@@ -467,7 +466,6 @@
       BootloaderLib           | PayloadPkg/Library/PayloadLib/PayloadLib.inf
       PlatformHookLib         | PayloadPkg/Library/PlatformHookLib/PlatformHookLib.inf
       FirmwareUpdateLib       | $(SOC_FWU_LIB_INF_FILE)
-      NULL                    | BootloaderCorePkg/Library/AsanLib/AsanLib.inf
   }
 !endif
 

@@ -38,8 +38,8 @@
   @return A pointer to the matching byte in the target buffer or NULL otherwise.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanScanMem8 (
   IN CONST VOID  *Buffer,
@@ -78,8 +78,8 @@ NoAsanScanMem8 (
   @return A pointer to the matching byte in the target buffer or NULL otherwise.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanScanMemN (
   IN CONST VOID  *Buffer,

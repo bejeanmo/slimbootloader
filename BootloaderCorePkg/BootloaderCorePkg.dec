@@ -259,3 +259,4 @@
 
 [PcdsDynamic]
   gPlatformModuleTokenSpaceGuid.PcdFspResetStatus         | 0          | UINT64 | 0x20000224
+  gPlatformModuleTokenSpaceGuid.PcdAsanShadowBase         | 0          | UINT64 | 0x20000227

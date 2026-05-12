@@ -438,6 +438,9 @@ S3ResumePath (
   FindAcpiWakeVectorAndJump (S3Data->AcpiBase);
 }
 
+VOID
+AsanInit(VOID);
+
 /**
   Entry point to the C language phase of Stage2.
 
@@ -469,6 +472,7 @@ SecStartup (
   VOID                           *SmbiosEntry;
   BOOLEAN                         SplashPostPci;
   UINT8                           SmmRebaseMode;
+  UINT8                           buffer[100];
 
   // Initialize HOB
   LdrGlobal = (LOADER_GLOBAL_DATA *)GetLoaderGlobalDataPointer();
@@ -477,6 +481,7 @@ SecStartup (
 
   DEBUG ((DEBUG_INFO, "\n============= Intel Slim Bootloader STAGE2 =============\n"));
   AddMeasurePoint (0x3000);
+  AsanInit();
 
   // Unmap previous stage
   UnmapStage ();
@@ -496,6 +501,9 @@ SecStartup (
 
   // Update Patchable PCD in case Stage2 is loaded into high mem
   Stage2Param = (STAGE2_PARAM *)Params;
+  // intentionally poison memory
+  buffer[100] = 0xFF;
+  DEBUG((DEBUG_INFO, "buffer: 0x%02X\n", buffer[100]));
   Delta = Stage2Param->Stage2ExeBase - PCD_GET32_WITH_ADJUST (PcdStage2FdBase);
   Status = PcdSet32S (PcdFSPSBase,             PCD_GET32_WITH_ADJUST (PcdFSPSBase) + Delta);
   Status = PcdSet32S (PcdAcpiTablesAddress,    PCD_GET32_WITH_ADJUST (PcdAcpiTablesAddress) + Delta);

@@ -33,8 +33,8 @@
   @return Buffer.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanZeroMem (
   OUT VOID  *Buffer,

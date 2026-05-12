@@ -33,8 +33,8 @@
   @return Buffer.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanSetMem (
   OUT VOID  *Buffer,
@@ -70,8 +70,8 @@ NoAsanSetMem (
   @return Buffer.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanSetMemN (
   OUT VOID  *Buffer,

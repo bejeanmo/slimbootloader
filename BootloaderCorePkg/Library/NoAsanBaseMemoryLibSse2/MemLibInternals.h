@@ -18,7 +18,7 @@
 #define __MEM_LIB_INTERNALS__
 
 #include <Base.h>
-#include <Library/BaseMemoryLib.h>
+#include <Library/NoAsanBaseMemoryLib.h>
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
 #include <Library/AsanLib.h>
@@ -33,8 +33,8 @@
   @return Destination
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanInternalMemCopyMem (
   OUT     VOID        *DestinationBuffer,
@@ -52,8 +52,8 @@ NoAsanInternalMemCopyMem (
   @return Buffer
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanInternalMemSetMem (
   OUT     VOID   *Buffer,
@@ -71,8 +71,8 @@ NoAsanInternalMemSetMem (
   @return Buffer
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanInternalMemSetMem16 (
   OUT     VOID    *Buffer,
@@ -90,8 +90,8 @@ NoAsanInternalMemSetMem16 (
   @return Buffer
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanInternalMemSetMem32 (
   OUT     VOID    *Buffer,
@@ -109,8 +109,8 @@ NoAsanInternalMemSetMem32 (
   @return Buffer
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanInternalMemSetMem64 (
   OUT     VOID    *Buffer,
@@ -127,8 +127,8 @@ NoAsanInternalMemSetMem64 (
   @return Buffer
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanInternalMemZeroMem (
   OUT     VOID   *Buffer,
@@ -148,8 +148,8 @@ NoAsanInternalMemZeroMem (
                             mismatched byte in DestinationBuffer.
 
 **/
-INTN
 NO_SANITIZE_ADDRESS
+INTN
 EFIAPI
 NoAsanInternalMemCompareMem (
   IN      CONST VOID  *DestinationBuffer,
@@ -168,8 +168,8 @@ NoAsanInternalMemCompareMem (
   @return The pointer to the first occurrence or NULL if not found.
 
 **/
-CONST VOID *
 NO_SANITIZE_ADDRESS
+CONST VOID *
 EFIAPI
 NoAsanInternalMemScanMem8 (
   IN      CONST VOID  *Buffer,
@@ -188,8 +188,8 @@ NoAsanInternalMemScanMem8 (
   @return The pointer to the first occurrence or NULL if not found.
 
 **/
-CONST VOID *
 NO_SANITIZE_ADDRESS
+CONST VOID *
 EFIAPI
 NoAsanInternalMemScanMem16 (
   IN      CONST VOID  *Buffer,
@@ -208,8 +208,8 @@ NoAsanInternalMemScanMem16 (
   @return The pointer to the first occurrence or NULL if not found.
 
 **/
-CONST VOID *
 NO_SANITIZE_ADDRESS
+CONST VOID *
 EFIAPI
 NoAsanInternalMemScanMem32 (
   IN      CONST VOID  *Buffer,
@@ -228,8 +228,8 @@ NoAsanInternalMemScanMem32 (
   @return A pointer to the first occurrence or NULL if not found.
 
 **/
-CONST VOID *
 NO_SANITIZE_ADDRESS
+CONST VOID *
 EFIAPI
 NoAsanInternalMemScanMem64 (
   IN      CONST VOID  *Buffer,
@@ -247,8 +247,8 @@ NoAsanInternalMemScanMem64 (
   @retval FALSE   Contents of the buffer are not all zeros.
 
 **/
-BOOLEAN
 NO_SANITIZE_ADDRESS
+BOOLEAN
 EFIAPI
 NoAsanInternalMemIsZeroBuffer (
   IN CONST VOID  *Buffer,

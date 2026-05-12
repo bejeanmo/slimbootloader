@@ -40,8 +40,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
                             mismatched byte in DestinationBuffer.
 
 **/
-INTN
 NO_SANITIZE_ADDRESS
+INTN
 EFIAPI
 NoAsanCompareMem (
   IN CONST VOID  *DestinationBuffer,

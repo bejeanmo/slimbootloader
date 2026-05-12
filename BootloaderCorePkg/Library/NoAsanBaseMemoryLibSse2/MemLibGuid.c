@@ -34,8 +34,8 @@
   @return DestinationGuid.
 
 **/
-GUID *
 NO_SANITIZE_ADDRESS
+GUID *
 EFIAPI
 NoAsanCopyGuid (
   OUT GUID       *DestinationGuid,
@@ -69,8 +69,8 @@ NoAsanCopyGuid (
   @retval FALSE       Guid1 and Guid2 are not identical.
 
 **/
-BOOLEAN
 NO_SANITIZE_ADDRESS
+BOOLEAN
 EFIAPI
 NoAsanCompareGuid (
   IN CONST GUID  *Guid1,
@@ -112,8 +112,8 @@ NoAsanCompareGuid (
   @return A pointer to the matching Guid in the target buffer or NULL otherwise.
 
 **/
-VOID *
 NO_SANITIZE_ADDRESS
+VOID *
 EFIAPI
 NoAsanScanGuid (
   IN CONST VOID  *Buffer,
@@ -154,8 +154,8 @@ NoAsanScanGuid (
   @retval FALSE       Guid is not a zero GUID.
 
 **/
-BOOLEAN
 NO_SANITIZE_ADDRESS
+BOOLEAN
 EFIAPI
 NoAsanIsZeroGuid (
   IN CONST GUID  *Guid

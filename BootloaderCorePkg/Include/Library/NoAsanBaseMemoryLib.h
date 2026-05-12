@@ -13,6 +13,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #ifndef __NO_ASAN_BASE_MEMORY_LIB__
 #define __NO_ASAN_BASE_MEMORY_LIB__
 
+#include <Library/AsanLib.h>
 /**
   Copies a source buffer to a destination buffer, and returns the destination buffer.
 
@@ -30,6 +31,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
   @return DestinationBuffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanCopyMem (
@@ -52,6 +54,7 @@ NoAsanCopyMem (
   @return Buffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanSetMem (
@@ -79,6 +82,7 @@ NoAsanSetMem (
   @return Buffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanSetMem16 (
@@ -106,6 +110,7 @@ NoAsanSetMem16 (
   @return Buffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanSetMem32 (
@@ -133,6 +138,7 @@ NoAsanSetMem32 (
   @return Buffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanSetMem64 (
@@ -160,6 +166,7 @@ NoAsanSetMem64 (
   @return Buffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanSetMemN (
@@ -182,6 +189,7 @@ NoAsanSetMemN (
   @return Buffer.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanZeroMem (
@@ -211,6 +219,7 @@ NoAsanZeroMem (
                             mismatched byte in DestinationBuffer.
 
 **/
+NO_SANITIZE_ADDRESS
 INTN
 EFIAPI
 NoAsanCompareMem (
@@ -238,6 +247,7 @@ NoAsanCompareMem (
   @return A pointer to the matching byte in the target buffer, otherwise NULL.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanScanMem8 (
@@ -267,6 +277,7 @@ NoAsanScanMem8 (
   @return A pointer to the matching byte in the target buffer, otherwise NULL.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanScanMem16 (
@@ -296,6 +307,7 @@ NoAsanScanMem16 (
   @return A pointer to the matching byte in the target buffer, otherwise NULL.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanScanMem32 (
@@ -325,6 +337,7 @@ NoAsanScanMem32 (
   @return A pointer to the matching byte in the target buffer, otherwise NULL.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanScanMem64 (
@@ -354,6 +367,7 @@ NoAsanScanMem64 (
   @return A pointer to the matching byte in the target buffer, otherwise NULL.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanScanMemN (
@@ -377,6 +391,7 @@ NoAsanScanMemN (
   @return DestinationGuid.
 
 **/
+NO_SANITIZE_ADDRESS
 GUID *
 EFIAPI
 NoAsanCopyGuid (
@@ -400,6 +415,7 @@ NoAsanCopyGuid (
   @retval FALSE       Guid1 and Guid2 are not identical.
 
 **/
+NO_SANITIZE_ADDRESS
 BOOLEAN
 EFIAPI
 NoAsanCompareGuid (
@@ -429,6 +445,7 @@ NoAsanCompareGuid (
   @return A pointer to the matching Guid in the target buffer, otherwise NULL.
 
 **/
+NO_SANITIZE_ADDRESS
 VOID *
 EFIAPI
 NoAsanScanGuid (
@@ -451,6 +468,7 @@ NoAsanScanGuid (
   @retval FALSE       Guid is not a zero GUID.
 
 **/
+NO_SANITIZE_ADDRESS
 BOOLEAN
 EFIAPI
 NoAsanIsZeroGuid (
@@ -473,6 +491,7 @@ NoAsanIsZeroGuid (
   @retval FALSE       Contents of the buffer are not all zeros.
 
 **/
+NO_SANITIZE_ADDRESS
 BOOLEAN
 EFIAPI
 NoAsanIsZeroBuffer (

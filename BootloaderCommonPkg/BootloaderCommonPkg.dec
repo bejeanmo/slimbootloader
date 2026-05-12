@@ -362,7 +362,6 @@
   #     0x00000010    - SM3_256.<BR>
   gPlatformCommonLibTokenSpaceGuid.PcdMeasuredBootHashMask    |         0x00000002 | UINT32  | 0x20000703
 
-
 [PcdsFeatureFlag]
   gPlatformCommonLibTokenSpaceGuid.PcdMinDecompression        | FALSE      | BOOLEAN | 0x20000201
   gPlatformCommonLibTokenSpaceGuid.PcdVerifiedBootEnabled     | FALSE      | BOOLEAN | 0x20000210

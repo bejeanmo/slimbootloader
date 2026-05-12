@@ -12,12 +12,12 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BaseMemoryLibSse2
+  BASE_NAME                      = NoAsanBaseMemoryLibSse2
   MODULE_UNI_FILE                = BaseMemoryLibSse2.uni
   FILE_GUID                      = 65a18235-5096-4032-8c63-214f0249ce8d
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = BaseMemoryLib
+  LIBRARY_CLASS                  = NoAsanBaseMemoryLib
 
 
 #
@@ -92,8 +92,12 @@
 
 [Packages]
   MdePkg/MdePkg.dec
+  BootloaderCorePkg/BootloaderCorePkg.dec
 
 [LibraryClasses]
   DebugLib
   BaseLib
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS = /GL- /Gy-
 
