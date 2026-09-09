@@ -184,6 +184,7 @@ FspMultiPhaseMemInitHandler(VOID)
     MultiPhaseInitParams.PhaseIndex++)
   {
     Status = CallFspMultiPhaseMemoryInit(&MultiPhaseInitParams);
+    FspResetHandler(Status);
     ASSERT_EFI_ERROR(Status);
     Status = FspVariableHandler(Status,CallFspMultiPhaseMemoryInit);
     ASSERT_EFI_ERROR(Status);

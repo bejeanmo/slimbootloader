@@ -128,6 +128,7 @@ FspMultiPhaseSiliconInitHandler(VOID)
     MultiPhaseInitParams.PhaseIndex++)
   {
     Status = CallFspMultiPhaseSiliconInit(&MultiPhaseInitParams);
+    FspResetHandler(Status);
     ASSERT_EFI_ERROR(Status);
     Status = FspVariableHandler(Status,CallFspMultiPhaseSiliconInit);
     ASSERT_EFI_ERROR(Status);
